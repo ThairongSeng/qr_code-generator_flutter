@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'QrCodeGenerator.dart';
+import 'package:qr_code_generator/bar_code_generator.dart';
+import 'package:qr_code_generator/qr_code_generator.dart';
+// import 'qr_code_generator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const QrCodeGenerator(),
+      home: const BarCode(),
     );
   }
 }

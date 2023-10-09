@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import 'package:barcode_widget/barcode_widget.dart';
+
 class QrCodeGenerator extends StatefulWidget {
   const QrCodeGenerator({super.key});
 
@@ -30,11 +32,11 @@ class _QrCodeGeneratorState extends State<QrCodeGenerator> {
                 labelStyle: const TextStyle(color: Colors.grey),
                 enabledBorder: OutlineInputBorder(
                   borderSide: const BorderSide(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(5.0),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(color: Colors.blue),
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(5.0),
                 ),
                 filled: true,
                 fillColor: Colors.white,
@@ -43,13 +45,37 @@ class _QrCodeGeneratorState extends State<QrCodeGenerator> {
             ),
           ),
           const SizedBox(height: 10,),
+
+
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              BarcodeWidget(
+                barcode: Barcode.qrCode(
+                  errorCorrectLevel: BarcodeQRCorrectionLevel.high,
+                ),
+                data: txt_qr_code,
+                width: 250,
+                height: 250,
+              ),
+              Container(
+                color: Colors.white,
+                width: 50,
+                height: 50,
+                child: Image.network(
+                    'https://istad.co/resources/img/CSTAD_120.png'
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20,),
           Center(
             child: QrImageView(
               data: txt_qr_code,
               version: 5,
               embeddedImage: const NetworkImage('https://istad.co/resources/img/CSTAD_120.png'),
               embeddedImageStyle: const QrEmbeddedImageStyle(
-                size: Size(70, 70),
+                size: Size(50, 50),
               ),
               size: 250,
               gapless: false,
